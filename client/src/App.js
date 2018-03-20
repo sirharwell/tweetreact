@@ -4,11 +4,11 @@ import axios from 'axios';
 import Tweets from './Tweets';
 
 class App extends Component {
-  state = {
-    tweets: [],
-    visible: [],
+  state = { 
+    tweets: [], 
+    visible: [], 
     search: '',
-    tweet: '',
+    tweet: '', 
   }
 
   updateTweet = (e) => {
@@ -20,16 +20,19 @@ class App extends Component {
     if (tweet) {
       axios.post('/api/tweets', { tweet })
         .then( res => {
-          this.setState({ visible: [res.data, ...visible], tweet:'' })
+          this.setState({ 
+            visible: [res.data, ...visible],
+            tweet: ''
+          })
         })
     }
   }
 
   componentDidMount() {
     axios.get('/api/tweets')
-      .then( res => this.setState({
-        tweets: res.data, visible: res.data
-      })
+      .then( res => this.setState({ 
+        tweets: res.data, visible: res.data 
+      }) 
     )
   }
 
